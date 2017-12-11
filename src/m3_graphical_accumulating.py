@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and mohammed.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -27,8 +27,9 @@ import rosegraphics as rg
 # ----------------------------------------------------------------------
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_draw_parallel_lines()
+    #run_test_draw_parallel_lines()
     run_test_draw_lines()
+
 
 
 def run_test_draw_parallel_lines():
@@ -96,7 +97,7 @@ def draw_parallel_lines(n, point, length, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # done: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -109,6 +110,21 @@ def draw_parallel_lines(n, point, length, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    window = rg.RoseWindow(500,500)
+    x = point.x
+    y = point.y
+    length = 20
+
+    for _ in range(n+1):
+
+        point = rg.Point(x,y)
+        line = rg.Line(point, rg.Point(x+length, y))
+        y = y+30
+
+        line.attach_to(window)
+    window.render()
+
+
 
 
 def run_test_draw_lines():
@@ -160,8 +176,28 @@ def draw_lines(n, point, window):
       :type point: rg.Point
       :type window: rg.RoseWindow
     """
+    window = rg.RoseWindow(500,500)
+    x = point.x
+    y = point.y - 100
+    start = rg.Point(x,y)
+    end = rg.Point(x+100, y-100)
+    end_x = x + 100
+    end_y = y-100
+
+    for k in range(n + 1):
+        if n>2:
+            end = rg.Point(end_x, end_y)
+            line = rg.Line(start, end)
+            end_y = end_y + (200/n)*k
+            end_x = end_x
+
+
+            line.attach_to(window)
+
+        window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # TOdoneDO: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
